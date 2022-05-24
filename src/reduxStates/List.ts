@@ -43,14 +43,8 @@ const removeExpiredRaceData = (
   state: DataProps,
   action: PayloadAction<RaceSummary[] | []>
 ) => {
-  const index = state.nextToGoList?.findIndex(
-    x => x.race_id === action.payload,
-  );
-  const newRaceDataSet = [...state.nextToGoList];
-  if (index > -1) {
-    newRaceDataSet.splice(index, 1);
-  }
-  state.nextToGoList = newRaceDataSet;
+  const newList = state.nextToGoList?.filter(race=> race.race_id !== action.payload);
+  state.nextToGoList = newList;
 };
 
 export const listSlice = createSlice({

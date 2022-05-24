@@ -24,24 +24,21 @@ const MainView = (): JSX.Element => {
 
   useEffect(() => {
     if(!selectNextToGoList){return};
-
-    if (selectToggleGreyhound && selectToggleHarness && selectToggleHorse) {
-      setFilteredList(selectNextToGoList);
-    }else{
-      var newList = selectNextToGoList.filter(x => {
+      const newList = selectNextToGoList.filter(x => {
         if (selectToggleGreyhound && x.category_id === RaceCategory.GreyhoundRacing) {
           return true;
         }
-        if (selectToggleHarness && x.category_id === RaceCategory.HarnessRacing) {
+        else if (selectToggleHarness && x.category_id === RaceCategory.HarnessRacing) {
           return true;
         }
-        if (selectToggleHorse && x.category_id === RaceCategory.HorseRacing) {
+        else if (selectToggleHorse && x.category_id === RaceCategory.HorseRacing) {
           return true;
         }
-        return false;
+        else{
+          return false;
+        }
       });
       setFilteredList(newList);
-    }
   }, [selectNextToGoList, selectToggleGreyhound, selectToggleHarness, selectToggleHorse])
   
 
