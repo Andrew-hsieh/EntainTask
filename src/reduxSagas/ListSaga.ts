@@ -10,13 +10,11 @@ export function* fetchNextToGoList(action: AnyAction): any {
     getNextToGoList,
     action.payload
   );
-  console.log('getNextToGoList apiResponse:::::', apiResponse)
   if (apiResponse.response_type === "success" && apiResponse.response?.data) {
     let summaries = Object.values(apiResponse.response?.data?.race_summaries);
         summaries = summaries.sort(
           (a, b) => a.advertised_start.seconds - b.advertised_start.seconds,
         );
-    console.log('summaries', summaries)
     yield put(List.updateNextToGoList(summaries));
   } else {
     yield put(List.updateNextToGoList([]));

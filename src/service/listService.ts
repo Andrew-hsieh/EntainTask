@@ -1,4 +1,3 @@
-// import ApiConfig from "app/config/api-config";
 import { apiRequest } from "./service";
 import ApiConfig from '../utils/apiCallConfig'
 
